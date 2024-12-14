@@ -17,10 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import index,  rotate
+from .views import index, rotate
 
 urlpatterns = [
     path('', index),
-    path('rotate/', rotate),
+    path('next/', rotate),
     path('admin/', admin.site.urls),
 ]

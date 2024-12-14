@@ -44,7 +44,11 @@
 <body>
     <main class="center">
         <h1>Pay Mexican Guys, WTF?</h1>
-        <h2>It's <b>{{ who_pays.user.username }}</b>'s turn</h2>
+        {% if who_pays.user.first_name %}
+          <h2>It's <b>{{ who_pays.user.first_name }}</b>'s turn</h2>
+        {% else %}
+          <h2>It's <b>{{ who_pays.user.username }}</b>'s turn</h2>
+        {% endif %}
     </main>
 </body>
 
