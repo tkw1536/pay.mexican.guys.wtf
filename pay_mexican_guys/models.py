@@ -4,6 +4,7 @@ from django.forms import ValidationError
 
 class WhoPays(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    last_change = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = "Who pays?"

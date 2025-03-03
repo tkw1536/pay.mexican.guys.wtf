@@ -1,8 +1,11 @@
-from django.shortcuts import get_object_or_404, redirect, render
-from django.contrib.auth.models import User
+from datetime import datetime
+
 from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404, redirect, render
 
 from .models import WhoPays
+
 
 def index(request):
     context = {
@@ -20,6 +23,7 @@ def rotate(request):
     next_user = users[(idx+1)%len(users)]
 
     who_pays.user = next_user
+    who_pays.last_change = datetime.now()
     who_pays.save()
 
     return redirect(index)
