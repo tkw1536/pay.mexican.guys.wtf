@@ -56,12 +56,12 @@
 <body>
     <main class="center">
         <h1>Pay Mexican Guys, WTF?</h1>
-        {% if who_pays.user.first_name %}
-          <h2>It's <b>{{ who_pays.user.first_name }}</b>'s turn</h2>
+        <h2>{{ message|safe }}</b></h2>
+        {% if user.is_authenticated %}
+        <a class="button" href="/next">Next</a>
         {% else %}
-          <h2>It's <b>{{ who_pays.user.username }}</b>'s turn</h2>
+        <a class="button" href="/admin/login/?next=/">Log in</a>
         {% endif %}
-        <a class="button" href="\next">Next</a>
     </main>
     <footer>Last change: {{ who_pays.last_change }}</footer>
 </body>
