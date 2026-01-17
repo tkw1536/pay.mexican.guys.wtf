@@ -1,0 +1,21 @@
+services:
+  mexicans:
+    restart: always
+    image: mexicans
+    build:
+      context: .
+    environment:
+      DJANGO_ALLOWED_HOSTS: ${HOSTNAME}
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+    volumes:
+      - data:/data/ 
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true
+
+volumes:
+  data:
+
