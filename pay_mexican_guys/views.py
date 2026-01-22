@@ -36,12 +36,13 @@ OWN_MESSAGES = [
 def index(request):
     who_pays = get_object_or_404(WhoPays, pk=1)
     payer_name = who_pays.user.first_name or who_pays.user.username
-    message = f"It's <b>{payer_name}</b>'s turn"
-    if request.user:
+    if request.user.is_anonymous:
+        message = f"It's <b>{payer_name}</b>'s turn"
+    else:
         user_name = request.user.first_name or request.user.username
         message = random.choice(MESSGAES).format(user=user_name, payer=payer_name)
-    if request.user == who_pays.user:
-        message = random.choice(OWN_MESSAGES).format(user=user_name)
+        if request.user == who_pays.user:
+            message = random.choice(OWN_MESSAGES).format(user=user_name)
 
     context = {
         "message": message,
